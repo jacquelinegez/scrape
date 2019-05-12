@@ -109,19 +109,19 @@ $(document).ready(function () {
             });
             }
 
-            function handleArticleNotes(){
-                var currentArticle = $(this).parents("panel").data();
-                $.get("/api/notes" + currentArticle._id).then(function (data) {
+            function handleArticleNotes() {
+                var currentArticle = $(this).parents(".panel").data();
+                $.get("/api/notes/" + currentArticle._id).then(function (data) {
                     var modalText = [
                         "<div class='container-fluid text-center'>",
-                        "<h4>Notes for Article: ",
+                        "<h4> Notes For Article: ",
                         currentArticle._id,
-                        "<h4>",
+                        "</h4>",
                         "<hr />",
                         "<ul class='list-group note-container'>",
                         "</ul>",
-                        "<textarea placeholder='New Note'rows='4' cols='60'></textarea>",
-                        "<button class='btn btn-success save' Save Note </button> ",
+                        "<textarea placeholder='New Note' rows='4' cols='60'></textarea>",
+                        "<button class='btn btn-success save'> Save Note</button>",
                         "</div>"
                     ].join("");
                     bootbox.dialog({
@@ -129,14 +129,15 @@ $(document).ready(function () {
                         closeButton: true,
                     });
                     var noteData = {
-                        _id:currentArticle._id,
-                        notes: data|| []
+                        _id: currentArticle._id,
+                        notes: data || []
                     };
                     $(".btn.save").data("article", noteData);
                     renderNotesList(noteData);
-
                     }); 
                 }
+
+
                 function handleNoteSave() {
                     var noteData;
                     var newNote = $(".bootbox-body textarea").val().trim();
@@ -150,11 +151,12 @@ $(document).ready(function () {
                 });
             }
         }
+
         function handleNoteDelete() {
-            var noteToDelete =  $(this).data("_id");
+            var noteToDelete = $(this).data("_id");
             $.ajax({
                 url: "/api/notes/" + noteToDelete,
-                method: "DELETE",
+                method: "DELETE"
             }).then(function() {
                 bootbox.hideAll();
         });

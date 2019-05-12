@@ -1,7 +1,5 @@
-import { builtinModules } from "module";
-
-var request = required("request");
-var cheerio = required("cheerio");
+var request = require("request");
+var cheerio = require("cheerio");
 //call back as a param
 var scrape = function (cb) {
 
