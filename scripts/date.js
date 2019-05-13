@@ -10,4 +10,5 @@ var makeDate = function(){
 
     return formatedDate;
 };
-module.export = makeDate;
+
+module.exports = makeDate;

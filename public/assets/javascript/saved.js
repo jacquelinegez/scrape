@@ -5,6 +5,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn.notes", handleArticleNotes);
     $(document).on("click", ".btn.save", handleArticleSave);
     $(document).on("click", ".btn.note-delete", handleArticleNoteDelete);
+
     initPage();
     
     function initPage() {
@@ -134,8 +135,8 @@ $(document).ready(function () {
                     };
                     $(".btn.save").data("article", noteData);
                     renderNotesList(noteData);
-                    }); 
-                }
+                }); 
+             }
 
 
                 function handleNoteSave() {
@@ -148,6 +149,7 @@ $(document).ready(function () {
                         };
                 $.post("/api/notes", noteData).then(function() {
                     bootbox.hideAll();
+                    
                 });
             }
         }

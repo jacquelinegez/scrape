@@ -3,11 +3,11 @@ $(document).ready (function(){
     $(document).on("click", ".btn.save", handleArticleSave);
     $(document).on("click", ".scrape-new", handleArticleScrape);
 
-    initPage();
+    //initPage();
 
-    function initPage () {
+  /*  function initPage () {
         articleContainer.empty();
-        $.get("/api/headlines?saved=false")
+        $.get("/api/headlines")
         .then(function(data) {
             if (data && data.length){
                 renderArticle(data);
@@ -15,9 +15,9 @@ $(document).ready (function(){
             else {
                 renderEmpty();
             }
-
-        });
-    }
+        })
+*/
+      
     function renderArticles(articles) {
         var articlePanels = [];
         
@@ -26,6 +26,7 @@ $(document).ready (function(){
         }
         articleContainer.append(articlePanels);
     }
+
     function createPanel(article) {
 
         var panel =
@@ -80,6 +81,7 @@ function handleArticleSave() {
         }
   });
 }
+
 function handleArticleScrape() {
     $.get("/api/fetch")
     .then(function(data) {
@@ -89,7 +91,6 @@ function handleArticleScrape() {
 }
 
 
-})
-
+});
 
    

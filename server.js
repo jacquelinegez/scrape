@@ -7,20 +7,29 @@ var app = express();
 var router = express.Router();
 
 require("./config/routes")(router);
-app.use(express.static(_dirname +  "/public"));
 
-app.engine("handlebars", expressHandlebars ({
-    defaultLayout: "main" }));
+
+app.use(express.static(__dirname +  "/public"));
+
+app.engine("handlebars", expressHandlebars ({ defaultLayout: "main" }));
 
 app.set("view engine", "handlebars");
 
-app.use(bodyParser.urlencoded({
-    extended: false }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(router);
 
-var db = process.env.MONGODB_URI || "mongodb:// localhost/mongoHeadlines";
-mongoose.connect(db, function(error) {
+mongoose.connect("mongodb:// localhost/mongoHeadlines");
+var db= mongoose.connection;
+
+db.on("error", console.error.bind(console, "connection error:"));
+db.once("open", function() {
+    console.log("Connected to Mongoose!");
+} );
+
+
+//var db = process.env.MONGODB_URI || ("mongodb:// localhost/mongoHeadlines", { useNewUrlParser: false } );
+/*mongoose.connect(db, function(error) {
     if (error) {
         console.log(error);
     }
@@ -29,7 +38,7 @@ mongoose.connect(db, function(error) {
 
     }
 })
-
+*/
 app.listen(PORT, function() {
     console.log("Listening to Port:" + PORT);
 }); 

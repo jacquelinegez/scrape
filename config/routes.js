@@ -1,21 +1,24 @@
+var scrape = require("../scripts/scrape");
+
 var headlinesController = require("../controllers/headlines");
 var notesController = require("../controllers/notes");
-var scrape = require("/scripts/scrape");
 
-module.exports = function(router){
+
+module.exports = function(router) {
     //renders home page
     router.get("/", function(req, res) {
         res.render("home");
     });
     //renders saved handlebars
-    router.get("/saved", function(req, res){
+    router.get("/saved", function(req, res) {
         res.render("saved");
     });
 
     router.get("/api/fetch", function(req, res) {
         headlinesController.fetch(function(err, docs) {
-            if (!docs || docs.insertdCount === 0) {
+            if (!docs || docs.insertedCount === 0) {
                 res.json ({
+                
                     message: "No new articles Today. Check back tomorrow!"
                 });
             }

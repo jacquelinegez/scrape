@@ -3,26 +3,32 @@
         <div class="navbar-header">
             <a class="navbar-brand" href="/">Mongo Scraper</a>
         </div>
-        <ul class="nav nav-bar-nav">
-            <li class="active"><a href="/">Home</a></li>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="/scrape">Home</a></li>
             <li><a href="/saved">Saved Articles</a></li>
             <li><a class="btn btn-danger scrape-new">Scrape New Articles</a></li>
         </ul>
     </div>
 </nav>
 <div class="jumbotron text-center">
-    <div class="overlay">
-    </div>
-    <div class="background-image">
-    </div>
+    <div class="overlay"></div>
     <div class="caption">
         <h1>Mongo Scraper</h1>
         <p>New York Time Edits Edition</p>
     </div>
 </div>
-<div class="container-fluid article-container">
+<div class="row">
+    <div class="col s2"></div>
+    <div class="col s8 left-align">
+        {{#each article}}
+        <div class="card-panel">
+            <h4>{{this.title}}</h4>
+            <a href="readArticle/{{this._id}}" class="waves-effect waves-light btn" id="btnSignUp">Read Articles</a>
+        </div>
+        {{/each}}
+    </div>
 </div>
-
+<div class="container-fluid article-container"></div>
 <footer class="footer">
     <div class="container">
         <p>New York Times Mongo Scraper</p>
