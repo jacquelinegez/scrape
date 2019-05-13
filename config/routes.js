@@ -1,6 +1,6 @@
 var headlinesController = require("../controllers/headlines");
 var notesController = require("../controllers/notes");
-var scrape = require("../scripts/scrape");
+var scrape = require("/scripts/scrape");
 
 module.exports = function(router){
     //renders home page
