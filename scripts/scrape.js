@@ -12,7 +12,7 @@ var scrape = function (cb) {
 
         var $ = cheerio.load(body);
       
-
+       
         var articles = [];
 
         $(".theme-summary").each(function(i, element){
@@ -24,6 +24,8 @@ var scrape = function (cb) {
             if(head && sum) {
                 var headNeat = head.replace (/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
                 var sumNeat = sum.replace(/(\r\n|\n|\r|\t|\s+)/gm, " ").trim();
+                
+            
             
               var dataToAdd =  {
                 headline: headNeat,
